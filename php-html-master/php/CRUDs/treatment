@@ -1,0 +1,88 @@
+ <?php
+
+require_once("database.php");
+
+
+function createTreatment($data) {
+    global $db;
+
+    $sql = "INSERT INTO treatment(treatment_type, treatment_dr_id, patient_id, treatment_category_treatment_id) 
+            VALUES ('$data[treatment_type]', '$data[treatment_dr_id]', '$data[patient_id]', '$data[treatment_category_treatment_id]')";
+
+    $result = $db->query($sql);
+
+    if ($result) {
+        echo "Record inserted.";
+    }
+    else {
+        echo "Failed to insert record.";
+    }
+}
+
+function retrieveTreatment($id) {
+     global $db;
+
+     $sql = "SELECT * FROM treatment WHERE treatment_id = $id";
+     
+     $result = $db->query($sql);
+
+     if ($result) {
+        $record = $result->fetch();
+	echo $record[treatment_type];
+    }
+    else {
+        echo "Failed to retrieve record.";
+    }
+}
+
+function updateTreatment($id) {
+
+    global $db;
+    $sql = "UPDATE treatment SET treatment_type = 'Dialysis' WHERE treatment_id = $id";
+
+    $result = $db->query($sql);
+
+     if ($result) {
+        echo "Record updated.";
+    }
+    else {
+        echo "Failed to update record.";
+    }
+}
+
+function deleteTreatment($id) {
+
+    global $db;
+    $sql = "DELETE FROM treatment WHERE treatment_id = $id";
+    
+     $result = $db->query($sql);
+
+     if ($result) {
+        echo "Record deleted.";
+    }
+    else {
+        echo "Failed to delete record.";
+    }
+}
+
+
+
+
+
+
+//$data = ["treatment_type" => "test", "trestment_dr_id" => "2", "patient_id" => "5", "treatment_category_treatment_id" => "1"];
+//createTreatment($data);
+
+//$id = 5;
+
+//not retrieving
+
+//retrieveTreatment($id);
+
+// not updating
+//updateTreatment($id);
+
+// not deleting
+//deleteTreatment($id);
+
+?>

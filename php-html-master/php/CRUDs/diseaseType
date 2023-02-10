@@ -1,0 +1,86 @@
+ <?php
+
+require_once("database.php");
+
+
+function createDiseaseType($data) {
+    global $db;
+
+    $sql = "INSERT INTO disease_types(disease_name, disease_description) 
+            VALUES ('$data[disease_name]', '$data[disease_description]')";
+
+    $result = $db->query($sql);
+
+    if ($result) {
+        echo "Record inserted.";
+    }
+    else {
+        echo "Failed to insert record.";
+    }
+}
+
+function retrieveDiseaseType($id) {
+     global $db;
+
+     $sql = "SELECT * FROM disease_types WHERE type_id = $id";
+     
+     $result = $db->query($sql);
+
+     if ($result) {
+        $record = $result->fetch();
+	echo $record[type_id];
+    }
+    else {
+        echo "Failed to retrieve record.";
+    }
+}
+
+function updateDiseaseType($id) {
+
+    global $db;
+    $sql = "UPDATE disease_types SET disease_name = 'new' WHERE type_id = $id";
+
+    $result = $db->query($sql);
+
+     if ($result) {
+        echo "Record updated.";
+    }
+    else {
+        echo "Failed to update record.";
+    }
+}
+
+function deleteDiseaseType($id) {
+
+    global $db;
+    $sql = "DELETE FROM disease_types WHERE type_id = $id";
+    
+     $result = $db->query($sql);
+
+     if ($result) {
+        echo "Record deleted.";
+    }
+    else {
+        echo "Failed to delete record.";
+    }
+}
+
+
+
+
+
+
+//$data = ["disease_name" => "test", "disease_description" => "xyz"];
+
+//createDiseaseType($data);
+
+//$id = 6;
+
+//retrieveDiseaseType($id);
+
+//updateDiseaseType($id);
+
+
+//deleteDiseaseType($id);
+
+?>

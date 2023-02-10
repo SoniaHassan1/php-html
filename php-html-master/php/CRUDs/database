@@ -1,0 +1,11 @@
+database.php
+
+<?php
+
+$db = new PDO ("mysql:host=localhost;dbname=shassan;", "shassan","Eir9Wuqu");
+
+?>
+
+
+
+

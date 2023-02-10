@@ -1,0 +1,84 @@
+ <?php
+
+require_once("database.php");
+
+
+function createRoles($data) {
+    global $db;
+
+    $sql = "INSERT INTO roles(role_name) 
+            VALUES ('$data[role_name]')";
+
+    $result = $db->query($sql);
+
+    if ($result) {
+        echo "Record inserted.";
+    }
+    else {
+        echo "Failed to insert record.";
+    }
+}
+
+function retrieveRoles($id) {
+     global $db;
+
+     $sql = "SELECT * FROM roles WHERE role_id = $id";
+     
+     $result = $db->query($sql);
+
+     if ($result) {
+        $record = $result->fetch();
+	echo $record[role_name];
+    }
+    else {
+        echo "Failed to retrieve record.";
+    }
+}
+
+function updateRoles($id) {
+
+    global $db;
+    $sql = "UPDATE roles SET role_name = 'new' WHERE role_id = $id";
+
+    $result = $db->query($sql);
+
+     if ($result) {
+        echo "Record updated.";
+    }
+    else {
+        echo "Failed to update record.";
+    }
+}
+
+function deleteRoles($id) {
+
+    global $db;
+    $sql = "DELETE FROM roles WHERE role_id = $id";
+    
+     $result = $db->query($sql);
+ 
+     if ($result) {
+        echo "Record deleted.";
+    }
+    else {
+        echo "Failed to delete record.";
+    }
+}
+
+
+
+
+
+//$data = ["role_name" => "test"];
+
+//createRoles($data);
+
+//$id = 10;
+
+//retrieveRoles($id);
+
+//updateRoles($id);
+
+//deleteRoles($id);
+
+?>
